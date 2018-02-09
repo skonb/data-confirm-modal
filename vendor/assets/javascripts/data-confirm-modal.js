@@ -68,6 +68,8 @@
 
       modal.spawn();
       modal.on('hidden.bs.modal', function () {
+        if (options.onCancel && options.onCancel.call)
+          options.onCancel.call();
         modal.remove();
       });
 
