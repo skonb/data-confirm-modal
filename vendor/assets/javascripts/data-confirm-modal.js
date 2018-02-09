@@ -77,14 +77,14 @@
         if (options.onConfirm && options.onConfirm.call)
           options.onConfirm.call();
 
-        modal.modal('hide');
+        modal.remove();;
       });
 
       modal.find('.cancel').on('click', function () {
         if (options.onCancel && options.onCancel.call)
           options.onCancel.call();
 
-        modal.modal('hide');
+        modal.remove();
       });
     }
   };
