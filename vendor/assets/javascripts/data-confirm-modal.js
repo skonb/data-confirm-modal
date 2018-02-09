@@ -67,24 +67,26 @@
       var modal = buildModal(options);
 
       modal.spawn();
+      confirmed = false
       modal.on('hidden.bs.modal', function () {
-        if (options.onCancel && options.onCancel.call)
-          options.onCancel.call();
+          if(confirmed){
+              if (options.onConfirm && options.onConfirm.call)
+                  options.onConfirm.call();
+          }else{
+              if (options.onCancel && options.onCancel.call)
+                  options.onCancel.call();
+
+          }
         modal.remove();
       });
 
       modal.find('.commit').on('click', function () {
-        if (options.onConfirm && options.onConfirm.call)
-          options.onConfirm.call();
-
-        modal.remove();;
+        confirmed = true;
+        modal.modal('hide');;
       });
 
       modal.find('.cancel').on('click', function () {
-        if (options.onCancel && options.onCancel.call)
-          options.onCancel.call();
-
-        modal.remove();
+        modal.modal('hide');
       });
     }
   };
